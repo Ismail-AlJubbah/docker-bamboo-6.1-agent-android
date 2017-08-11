@@ -6,17 +6,17 @@ Dockerfile Bamboo 6.1 Agent to build Android APK
 # Building
 Clone the project to your directory
 ```bash
-git clone https://github.com/Ismail-AlJubbah/docker-bamboo-6.1-base-agent
+git clone https://github.com/Ismail-AlJubbah/docker-bamboo-6.1-agent-android
 ```
 Then build the image
 ```bash
-docker build -t jubba/docker-bamboo-6.1-base-agent:latest .
+docker build -t jubba/docker-bamboo-6.1-agent-android:latest .
 ```
 
 # Running
 Run this command to run the container 
 ```bash
-docker run -d -u=root --name bamboo-base-agent -e BAMBOO_SERVER=http://YOUR-BAMBOO-SERVER-URL:PORT/agentServer/ jubba/docker-bamboo-agent-android:latest
+docker run -d -u=root --name bamboo-android-agent -e BAMBOO_SERVER=http://YOUR-BAMBOO-SERVER-URL:PORT/agentServer/ jubba/docker-bamboo-6.1-agent-android:latest
 ```
 # Test
 Follow the following steps to make sure your Bamboo agent can connect to Bamboo server:

@@ -19,16 +19,12 @@ RUN \
   rm -rf /var/lib/apt/lists/* && \
   rm -rf /var/cache/oracle-jdk8-installer
 
-# Define working directory.
-WORKDIR /data
-
 # Define commonly used JAVA_HOME variable
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 ####################################################
 # Copying Docker Agent
 
 COPY atlassian-bamboo-agent-installer-6.1.0.jar /data/
-COPY docker-entrypoint.sh /
 ###################################################
 # Install Android SDK
 
@@ -43,10 +39,20 @@ RUN (while sleep 3; do echo "y"; done) | /opt/android-sdk-linux/tools/android up
 RUN chmod -R 755 /opt/android-sdk-linux
 
 # Set PATH
-ENV ANDROID_HOME=/opt/android-sdk-linux GRADLE_HOME=/usr/local/gradle-2.5
+ENV ANDROID_HOME=/opt/android-sdk-linux
 ENV PATH $PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 ###################################################
+
+COPY sdkchecker /usr/bin
+RUN mkdir -p /root/bamboo-agent-home/bin/
+COPY bamboo-capabilities.properties /root/bamboo-agent-home/bin 
+###################################################
+
+COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
+
+# Define working directory.
+WORKDIR /root/bamboo-agent-home
 
 # Define default command.
 CMD ["bamboo-agent-android"]

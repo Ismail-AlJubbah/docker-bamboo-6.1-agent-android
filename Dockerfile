@@ -45,6 +45,9 @@ ENV PATH $PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
 RUN mkdir -p /root/bamboo-agent-home/bin/
 COPY bamboo-capabilities.properties /root/bamboo-agent-home/bin 
+
+RUN mkdir -p /root/.gradle/
+COPY grade.properties /root/.gradle/
 ###################################################
 
 COPY docker-entrypoint.sh /

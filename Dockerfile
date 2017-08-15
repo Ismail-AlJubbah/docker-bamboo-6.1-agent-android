@@ -43,7 +43,6 @@ ENV ANDROID_HOME=/opt/android-sdk-linux
 ENV PATH $PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 ###################################################
 
-COPY sdkchecker /usr/bin
 RUN mkdir -p /root/bamboo-agent-home/bin/
 COPY bamboo-capabilities.properties /root/bamboo-agent-home/bin 
 ###################################################

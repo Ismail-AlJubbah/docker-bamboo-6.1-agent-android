@@ -16,7 +16,7 @@ docker build -t jubba/docker-bamboo-6.1-agent-android:latest .
 # Running
 Run this command to run the container 
 ```bash
-docker run -d -u=root -h bamboo-android-agent-1 --name bamboo-android-agent-1 -e BAMBOO_SERVER=http://YOUR-BAMBOO-SERVER-URL:PORT/agentServer/ jubba/docker-bamboo-6.1-agent-android:latest
+docker run -d -u=root -h bamboo-android-agent-1 --name bamboo-android-agent-1 -e BAMBOO_SERVER=http://YOUR-BAMBOO-SERVER-IP:PORT/agentServer/ -e BAMBOO_TOKEN=OPTIONAL_TOKEN  jubba/docker-bamboo-6.1-agent-android:latest
 ```
 # Connect the Agent to Bamboo server
 Follow the following steps to make sure your Bamboo agent can connect to Bamboo server:
@@ -36,24 +36,8 @@ Follow the following steps to make sure your Bamboo agent can connect to Bamboo 
     ```bash
     docker logs bamboo-base-agent
     ```
-# Configure
-After approving the agent request, on Agents -> Online Remote Agent, click on the agnet name and follow the following steps to configure autodetected capability of building apk:
-1. Edit Shared Capability, Add capability and enter the following values:
-	a. Capability type: Executable
-	b. Type: Command
-	c. Executable label: sdkchecker
-	d. Path: /usr/bin/sdkchecker
-2. Go to Configure Plan in your plan settings, in Task, click Add task, select Command, and enter the following values, after saving it move it to the top of the list:
-	a. Task description: sdkchecker
-	b. Executable: sdkchecker 
-
-After approving the agent request, on Agents -> Online Remote Agent, click on the agnet name and follow the following steps to configure Gradle Wrapper:
-1. Edit Shared Capability, Add capability and enter the following values:
-        a. Capability type: Executable
-        b. Type: Command
-        c. Executable label: gradelw
-        d. Path: ./gradlew
-2. Go to Configure Plan in your plan settings, in Task, click Add task, select Command, and enter the following values:
+# Configure Build Plan:
+1. Go to Configure Plan in your plan settings, in Task, click Add task, select Command, and enter the following values:
         a. Task description: Build APK
         b. Executable: gradelw
 

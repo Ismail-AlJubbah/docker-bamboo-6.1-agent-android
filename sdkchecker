@@ -1,7 +1,0 @@
-#! /bin/bash
-if [[ $ANDROID_HOME == "/opt/android-sdk-linux" ]] ;then
-	echo "OK"
-	exit 0
-fi
-echo "Error: can not find ANDROID_HOME"
-exit 1

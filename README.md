@@ -36,6 +36,7 @@ Follow the following steps to make sure your Bamboo agent can connect to Bamboo 
     ```bash
     docker logs bamboo-base-agent
     ```
+
 # Configure Build Plan:
 1. Go to Configure Plan in your plan settings, in Task, click Add task, select Command, and enter the following values:
         a. Task description: Build APK
